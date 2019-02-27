@@ -2,11 +2,13 @@ package com.devlinduldulao.officeapp.web.services;
 
 import com.devlinduldulao.officeapp.core.entities.DepartmentEntity;
 
+import java.util.List;
+
 public interface IDepartmentService {
-    boolean exists(int id);
-    Iterable<DepartmentEntity> getDepartmentsList();
-    DepartmentEntity getDepartmentById(int id);
+    boolean exists(Long id);
+    List<DepartmentEntity> getDepartmentsList();
+    DepartmentEntity getDepartmentById(Long id);
     DepartmentEntity createDepartment(DepartmentEntity departmentEntity);
-    DepartmentEntity updateDepartment(DepartmentEntity departmentEntity);
-    void delete(int id);
+    void updateDepartment(DepartmentEntity departmentEntity);
+    void delete(Long id);
 }

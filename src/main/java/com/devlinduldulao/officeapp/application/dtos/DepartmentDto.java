@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class DepartmentDto {
-    private int id;
+    private Long id;
     @NotNull
     private String name;
     private String description;
