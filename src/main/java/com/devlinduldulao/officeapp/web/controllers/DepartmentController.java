@@ -4,13 +4,10 @@ import com.devlinduldulao.officeapp.application.dtos.DepartmentDto;
 import com.devlinduldulao.officeapp.core.entities.DepartmentEntity;
 import com.devlinduldulao.officeapp.web.services.DepartmentService;
 import io.swagger.annotations.Api;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.modelmapper.ModelMapper;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -20,7 +17,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@Api(value="Departments", description="Operations pertaining to departments of Office App")
+@Api(value = "Departments", description = "Operations pertaining to departments of Office App")
 public class DepartmentController {
 
     @Autowired
@@ -44,7 +41,8 @@ public class DepartmentController {
         return convertToDto(departmentService.getDepartmentById(id));
     }
 
-    @RequestMapping(value = "/api/departments",method = RequestMethod.POST)
+
+    @RequestMapping(value = "/api/departments", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public DepartmentDto createDepartment(@Valid @RequestBody DepartmentDto departmentDto) throws ParseException {
@@ -52,6 +50,7 @@ public class DepartmentController {
         var createdDepartment = departmentService.createDepartment(departmentEntity);
         return convertToDto(createdDepartment);
     }
+
 
     @RequestMapping(value = "/api/departments/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -65,15 +64,18 @@ public class DepartmentController {
         departmentService.updateDepartment(departmentEntity);
     }
 
+
     @RequestMapping(value = "/api/departments/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteDepartment(@PathVariable("id") long id) {
         departmentService.delete(id);
     }
 
+
     private DepartmentDto convertToDto(DepartmentEntity departmentEntity) {
-        return  modelMapper.map(departmentEntity, DepartmentDto.class);
+        return modelMapper.map(departmentEntity, DepartmentDto.class);
     }
+
     private DepartmentEntity convertToEntity(DepartmentDto departmentDto) throws ParseException {
         return modelMapper.map(departmentDto, DepartmentEntity.class);
     }
