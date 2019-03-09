@@ -3,8 +3,12 @@ package com.devlinduldulao.officeapp.web.controllers;
 import com.devlinduldulao.officeapp.application.dtos.DepartmentDto;
 import com.devlinduldulao.officeapp.core.entities.DepartmentEntity;
 import com.devlinduldulao.officeapp.web.services.DepartmentService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,7 +18,9 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
+@Api(value="Departments", description="Operations pertaining to departments of Office App")
 public class DepartmentController {
 
     @Autowired
