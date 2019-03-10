@@ -15,7 +15,6 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @RestController
 @Api(value = "Departments", description = "Operations pertaining to departments of Office App")
 public class DepartmentController {
